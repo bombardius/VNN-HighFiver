@@ -12,4 +12,5 @@
 */
 
 Route::get('/', 'HomeController@showWelcome' );
+Route::get('/{year}', 'HomeController@showWelcome' );
 Route::get('/player/{team}/{player}', array( 'as' => 'player', 'uses' => 'PlayerController@showPlayer' ) );
