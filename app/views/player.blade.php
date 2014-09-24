@@ -37,7 +37,7 @@ function drawChart() {
 <h1>{{$data['name']}}</h1>
 @if ($data['games'])
   <table>
-    <tr>
+    <tr class="tableHeader">
       <th></th>
       <th>Opponent</th>
       <th>Player Score</th>
@@ -46,14 +46,14 @@ function drawChart() {
     </tr>
     @foreach( $data['games'] as $game )
     <tr>
-      <td>Game {{ $game['game'] }}</td>
+      <td class="tableHeader">Game {{ $game['game'] }}</td>
       <td>{{ $game['opponent'] }}</td>
-      <td>{{ $game['playerPoints'] }}</td>
-      <td>{{ $game['teamPoints'] }}</td>
+      <td class="score">{{ $game['playerPoints'] }}</td>
+      <td class="score">{{ $game['teamPoints'] }}</td>
       @if ($game['gameWon'])
-      <td>W</td>
+      <td class="gameResult">W</td>
       @else
-      <td>L</td>
+      <td class="gameResult">L</td>
       @endif
     </tr>
     @endforeach
