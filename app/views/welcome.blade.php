@@ -1,3 +1,6 @@
+@extends('layouts.base')
+
+@section('body')
 <h1>Top 5 Players</h1>
 @if ($players)
   <ul>
@@ -8,3 +11,4 @@
 @else
   <p>No player data found</p>
 @endif
+@stop

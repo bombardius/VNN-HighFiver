@@ -1,4 +1,7 @@
-<head>
+@extends('layouts.base')
+
+@section('head')
+  @parent
 @if ($data['games'])
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
@@ -28,9 +31,9 @@ function drawChart() {
   @endif
 }
 </script>
-  </head>
+@stop
 
-<body>
+@section('body')
 <h1>{{$data['name']}}</h1>
 @if ($data['games'])
   <table>
@@ -59,4 +62,4 @@ function drawChart() {
 @else
   <p>No game data found</p>
 @endif
-</body>
+@stop
