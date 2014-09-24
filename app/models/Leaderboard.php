@@ -21,8 +21,9 @@ class Leaderboard extends VarveeData {
 
     $url = 'http://www.varvee.com/team/individual_leaderboard/' . $league . '/school-year:' . $year . '/sort:PointsPerGame/direction:desc';
 
+    libxml_use_internal_errors(true);
     $dom = new DOMDocument();
-    @$dom->loadHTML( $this->scrapeHtml( $url ) );
+    $dom->loadHTML( $this->scrapeHtml( $url ) );
 
     $nodes = $this->getTabularNodes( $dom, self::PLAYER_LIMIT );
 

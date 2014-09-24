@@ -21,8 +21,9 @@ class Player extends VarveeData {
   public function __construct( $team, $player )
   {
     $url = self::BASE_URL . $team . '/' . $player;
+    libxml_use_internal_errors(true);
     $dom = new DOMDocument();
-    @$dom->loadHTML( $this->scrapeHtml( $url ) );
+    $dom->loadHTML( $this->scrapeHtml( $url ) );
 
     $this->data['name'] = $this->getPlayerName( $dom );
 

@@ -15,7 +15,7 @@ class VarveeData {
    */
   protected function getTabularNodes( $dom, $limit = null )
   {
-    $iteration = 0;
+    $iteration = 1;
     $nodes = $dom->getElementsByTagName( 'tr' );
     $returnNodes = array();
     foreach( $nodes as $node )
@@ -41,12 +41,17 @@ class VarveeData {
    */
   protected function scrapeHtml( $url )
   {
-    $curl_handler = curl_init($url);
-    curl_setopt($curl_handler, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($curl_handler, CURLOPT_HEADER, false);
-    curl_setopt($curl_handler, CURLOPT_RETURNTRANSFER, true);
-    $output = curl_exec( $curl_handler );
-    curl_close( $curl_handler );
+    Debugbar::startMeasure('curl','Time for curl call');
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($curl, CURLOPT_FAILONERROR, true);
+    curl_setopt($curl, CURLOPT_HEADER, false);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_AUTOREFERER, true);
+    $output = curl_exec( $curl );
+    curl_close( $curl );
+    Debugbar::stopMeasure('curl');
     return $output;
   }
 }
